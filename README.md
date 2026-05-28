@@ -33,7 +33,7 @@ Each page is a folder with an `index.html`, so GitHub Pages serves extension-les
 
 ## ⚠️ Before go-live — open items
 1. **Swap photography.** Every grey hatched `.photoframe` is a placeholder. Replace with real HJ build photos (warm, slightly desaturated, deep shadows per the design brief). Each frame's `aria-label`/`data-label` says what shot goes there. Stock photos hurt trust and local SEO — use real builds only.
-2. **Builder licence number.** Footers contain `VBA Reg. [ADD LICENCE #]` — fill in the real Victorian registration number, or remove if not applicable.
+
 3. **Lead form backend.** The form is front-end only (shows a thank-you, sends nothing). Wire to Formspree / Netlify Forms / a mailto handler / your CRM endpoint before launch.
 4. **Transparent logo.** `assets/logo-badge.jpg` was cropped from the supplied JPG and sits on white. A transparent PNG/SVG badge and a bone-on-dark version would sharpen the nav/footer mark.
 5. **Confirm domain strategy.** This is built for `www.hjlandscapingandconstruction.com.au` (see `CNAME`). If replacing the existing site, set up 301 redirects from old URLs to preserve ranking.
