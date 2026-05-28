@@ -3,15 +3,18 @@
 Static marketing site for **HJ Landscaping And Construction PTY LTD** (Torquay, VIC).
 Built to the HJ Landscaping Design System. No framework, no build step — plain HTML/CSS/JS, ready for GitHub Pages.
 
-## Pages
-| File | Purpose |
-|---|---|
-| `index.html` | Homepage — hero, services, recent builds, before/after, testimonial, lead CTA |
-| `services.html` | Services hub — landscaping, concreting/retaining, decks, earthmoving (+ `Service` schema) |
-| `projects.html` | Filterable project gallery |
-| `about.html` | Company story, stats, crew |
-| `contact.html` | Lead form, NAP, embedded map |
-| `404.html` | Branded not-found page |
+## Pages (clean URLs — no `.html`)
+Each page is a folder with an `index.html`, so GitHub Pages serves extension-less URLs.
+| URL | File | Purpose |
+|---|---|---|
+| `/` | `index.html` | Homepage — hero, services, recent builds, before/after, testimonial, lead CTA |
+| `/services/` | `services/index.html` | Services hub — landscaping, concreting/retaining, decks, earthmoving (+ `Service` schema) |
+| `/projects/` | `projects/index.html` | Filterable project gallery |
+| `/about/` | `about/index.html` | Company story, stats, crew |
+| `/contact/` | `contact/index.html` | Lead form, NAP, embedded map |
+| — | `404.html` | Branded not-found page |
+
+> **Clean URLs:** links use root-relative paths (`/services/`, `/assets/…`). They resolve correctly on GitHub Pages and any web server. Opening files directly via `file://` will break the links — always preview through a local server (below).
 
 ## SEO foundations baked in
 - Unique `<title>` + meta description per page, geo-targeted to Torquay / Geelong / Surf Coast
@@ -29,6 +32,22 @@ Built to the HJ Landscaping Design System. No framework, no build step — plain
 5. **Confirm domain strategy.** This is built for `www.hjlandscapingandconstruction.com.au` (see `CNAME`). If replacing the existing site, set up 301 redirects from old URLs to preserve ranking.
 6. **Testimonials/projects** use representative placeholder names and locations — replace with real, attributed client reviews and real project details.
 
+## Paths & URLs — read before deploying
+Internal links and assets use **relative paths**, so the site works on *either*
+GitHub Pages URL type without changes:
+- **User/org site** — `https://<username>.github.io/`
+- **Project site** — `https://<username>.github.io/<repo-name>/`
+
+Two things still need your live URL filled in once you know it:
+1. **Canonical / Open Graph / sitemap** — every page's `<link rel="canonical">`,
+   `og:url`, the JSON-LD `url`/`logo`, and `sitemap.xml` contain the placeholder
+   `https://REPLACE-WITH-YOUR-PAGES-URL`. Find-and-replace that string with your real
+   Pages URL across all files before (or just after) first deploy. These must be
+   absolute — search engines ignore relative canonicals.
+2. **`404.html`** uses root-absolute links (`/` and `/contact/`). These are correct
+   for a **user/org site**. If you deploy as a **project site**, change them to
+   `/<repo-name>/` and `/<repo-name>/contact/`.
+
 ## Deploy to GitHub Pages
 
 ```bash
@@ -43,13 +62,16 @@ gh repo create hj-landscaping-construction --public --source=. --remote=origin -
 # then in the repo: Settings → Pages → Source: deploy from branch `main` / root
 ```
 
-Custom domain: the `CNAME` file is already set to `www.hjlandscapingandconstruction.com.au`.
-At the DNS host, point a CNAME record for `www` to `<your-username>.github.io`, and (optionally) the apex domain to GitHub Pages' A records. Enable "Enforce HTTPS" once the cert provisions.
+No custom domain is configured — the site runs on the default GitHub Pages URL.
+When you're ready to add `hjlandscapingandconstruction.com.au` later: add a `CNAME`
+file containing the domain, then set the DNS records per GitHub's custom-domain guide
+and enable "Enforce HTTPS".
 
 ## Local preview
+Clean URLs need a server (not `file://`):
 ```bash
 python3 -m http.server 8000
-# open http://localhost:8000
+# open http://localhost:8000  → /services/ etc. resolve automatically
 ```
 
 ---
