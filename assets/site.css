@@ -330,12 +330,17 @@ img{display:block;max-width:100%;}
 .area-meta span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--leaf-bright);flex:none;}
 
 .terrain{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border);margin-top:8px;}
-.terrain__item{padding:32px 28px 28px 0;border-right:1px solid var(--stone-300);}
+.terrain__item{padding:48px 44px 44px;border-right:1px solid var(--stone-300);border-bottom:1px solid var(--stone-300);}
 .terrain__item:first-child{padding-left:0;}
 .terrain__item:last-child{border-right:none;padding-right:0;}
-.terrain__item h3{font-family:var(--font-display);text-transform:uppercase;font-weight:600;font-size:18px;letter-spacing:-0.005em;line-height:1.15;margin:0 0 12px;color:var(--ink);}
+/* outer-edge columns flush to container: every 3rd item has no right border + right pad 0; every (3n+1) item left pad 0 */
+.terrain__item:nth-child(3n){border-right:none;padding-right:0;}
+.terrain__item:nth-child(3n+1){padding-left:0;}
+/* last row: drop the bottom border so the block closes cleanly */
+.terrain__item:nth-last-child(-n+3){border-bottom:none;}
+.terrain__item h3{font-family:var(--font-display);text-transform:uppercase;font-weight:600;font-size:18px;letter-spacing:-0.005em;line-height:1.15;margin:0 0 14px;color:var(--ink);}
 .section--dark .terrain{border-top-color:rgba(255,255,255,0.14);}
-.section--dark .terrain__item{border-right-color:rgba(255,255,255,0.1);}
+.section--dark .terrain__item{border-right-color:rgba(255,255,255,0.1);border-bottom-color:rgba(255,255,255,0.1);}
 .section--dark .terrain__item h3{color:var(--bone);}
 .terrain__item p{font-size:14.5px;line-height:1.55;color:var(--fg-2);margin:0;}
 .section--dark .terrain__item p{color:var(--fg-on-dark-2);}
@@ -351,7 +356,7 @@ img{display:block;max-width:100%;}
 
 @media (max-width:760px){
   .terrain{grid-template-columns:1fr;}
-  .terrain__item{border-right:none;padding:24px 0;border-top:1px solid var(--stone-300);}
+  .terrain__item,.terrain__item:nth-child(3n),.terrain__item:nth-child(3n+1){border-right:none;padding:28px 0;border-top:1px solid var(--stone-300);border-bottom:none;padding-left:0;padding-right:0;}
   .terrain__item:first-child{border-top:none;}
   .area-cards{grid-template-columns:1fr;}
 }
