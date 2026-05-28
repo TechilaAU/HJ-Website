@@ -15,15 +15,26 @@
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
   if(toggle && links){
-    toggle.addEventListener('click', function(){
-      var open = document.body.classList.toggle('nav-open');
+    var setMenu = function(open){
+      document.body.classList.toggle('nav-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    toggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      setMenu(!document.body.classList.contains('nav-open'));
     });
+    // close when a link is tapped
     links.addEventListener('click', function(e){
-      if(e.target.tagName === 'A'){
-        document.body.classList.remove('nav-open');
-        toggle.setAttribute('aria-expanded','false');
-      }
+      if(e.target.tagName === 'A') setMenu(false);
+    });
+    // close on Escape
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && document.body.classList.contains('nav-open')) setMenu(false);
+    });
+    // close when tapping outside the panel (on the page behind)
+    document.addEventListener('click', function(e){
+      if(!document.body.classList.contains('nav-open')) return;
+      if(!links.contains(e.target) && !toggle.contains(e.target)) setMenu(false);
     });
   }
 
