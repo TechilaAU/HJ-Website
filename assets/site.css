@@ -321,3 +321,38 @@ img{display:block;max-width:100%;}
   .service:first-child{border-top:none;}
   .stats{grid-template-columns:1fr;}
 }
+
+/* =========================================================
+   SERVICE-AREA PAGES
+   ========================================================= */
+.area-meta{font-family:var(--font-mono);font-size:12.5px;color:var(--fg-on-dark-2);margin-top:24px;display:flex;flex-wrap:wrap;gap:8px 20px;}
+.area-meta span{display:inline-flex;align-items:center;gap:8px;}
+.area-meta span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--leaf-bright);flex:none;}
+
+.terrain{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border);margin-top:8px;}
+.terrain__item{padding:32px 28px 28px 0;border-right:1px solid var(--stone-300);}
+.terrain__item:first-child{padding-left:0;}
+.terrain__item:last-child{border-right:none;padding-right:0;}
+.terrain__item h3{font-family:var(--font-display);text-transform:uppercase;font-weight:600;font-size:18px;letter-spacing:-0.005em;line-height:1.15;margin:0 0 12px;color:var(--ink);}
+.section--dark .terrain{border-top-color:rgba(255,255,255,0.14);}
+.section--dark .terrain__item{border-right-color:rgba(255,255,255,0.1);}
+.section--dark .terrain__item h3{color:var(--bone);}
+.terrain__item p{font-size:14.5px;line-height:1.55;color:var(--fg-2);margin:0;}
+.section--dark .terrain__item p{color:var(--fg-on-dark-2);}
+
+/* area hub grid */
+.area-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.area-card{display:block;border:1px solid var(--border);border-radius:8px;padding:28px;background:var(--paper);transition:border-color 180ms var(--ease-out),box-shadow 180ms var(--ease-out),transform 180ms var(--ease-out);}
+.area-card:hover{border-color:var(--ink);box-shadow:var(--shadow-2);transform:translateY(-2px);}
+.area-card__name{font-family:var(--font-display);text-transform:uppercase;font-weight:600;font-size:24px;letter-spacing:-0.01em;color:var(--ink);margin:0 0 8px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.area-card__name .arrow{color:var(--leaf);font-size:20px;transition:transform 200ms var(--ease-out);}
+.area-card:hover .area-card__name .arrow{transform:translateX(4px);}
+.area-card__blurb{font-size:14px;color:var(--fg-2);line-height:1.5;margin:0;}
+
+@media (max-width:760px){
+  .terrain{grid-template-columns:1fr;}
+  .terrain__item{border-right:none;padding:24px 0;border-top:1px solid var(--stone-300);}
+  .terrain__item:first-child{border-top:none;}
+  .area-cards{grid-template-columns:1fr;}
+}
+@media (max-width:1080px){.area-cards{grid-template-columns:repeat(2,1fr);}}

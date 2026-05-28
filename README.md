@@ -12,6 +12,13 @@ Each page is a folder with an `index.html`, so GitHub Pages serves extension-les
 | `/projects/` | `projects/index.html` | Filterable project gallery |
 | `/about/` | `about/index.html` | Company story, stats, crew |
 | `/contact/` | `contact/index.html` | Lead form, NAP, embedded map |
+| `/areas/` | `areas/index.html` | Service-area hub linking all localities |
+| `/areas/torquay/` | `areas/torquay/index.html` | Torquay landing page (local SEO) |
+| `/areas/jan-juc/` | `areas/jan-juc/index.html` | Jan Juc landing page |
+| `/areas/geelong/` | `areas/geelong/index.html` | Geelong landing page |
+| `/areas/ocean-grove/` | `areas/ocean-grove/index.html` | Ocean Grove landing page |
+| `/areas/barwon-heads/` | `areas/barwon-heads/index.html` | Barwon Heads landing page |
+| `/areas/surf-coast/` | `areas/surf-coast/index.html` | Surf Coast landing page |
 | — | `404.html` | Branded not-found page |
 
 > **Clean URLs:** links use root-relative paths (`/services/`, `/assets/…`). They resolve correctly on GitHub Pages and any web server. Opening files directly via `file://` will break the links — always preview through a local server (below).
@@ -47,6 +54,15 @@ Two things still need your live URL filled in once you know it:
 2. **`404.html`** uses root-absolute links (`/` and `/contact/`). These are correct
    for a **user/org site**. If you deploy as a **project site**, change them to
    `/<repo-name>/` and `/<repo-name>/contact/`.
+
+
+## Adding more service-area pages later
+Each area page is a self-contained folder under `/areas/`. To add one (e.g. Anglesea):
+copy an existing `areas/<slug>/index.html`, rewrite the locality copy (intro, terrain,
+projects — keep it genuinely different, not spun), update the title/description/canonical/
+schema geo-coordinates, then add it to `areas/index.html` (hub cards), the footer
+"Service areas" column, and `sitemap.xml`. Distinct local copy is what makes these rank —
+avoid templated duplicate content.
 
 ## Deploy to GitHub Pages
 
