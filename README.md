@@ -64,6 +64,23 @@ schema geo-coordinates, then add it to `areas/index.html` (hub cards), the foote
 "Service areas" column, and `sitemap.xml`. Distinct local copy is what makes these rank —
 avoid templated duplicate content.
 
+## Editing the shared nav & footer (build script)
+The nav and footer are **the same on every page**. Don't edit them in each file —
+edit the single source and re-stamp:
+
+1. Edit `partials/nav.html` and/or `partials/footer.html` (change a phone number,
+   add a link, etc.). Use the `{{BASE}}` token where a path points back to site root —
+   the build fills in the right number of `../` per page automatically.
+2. Run the build:  `python3 build.py`
+3. Commit and push the changed `*.html` files.
+
+The script only rewrites the content between the `<!--NAV-->...<!--/NAV-->` and
+`<!--FOOTER-->...<!--/FOOTER-->` markers on each page. Everything else is untouched.
+Output is plain static HTML (no runtime JS injection), so it stays SEO-clean.
+
+`404.html` is intentionally self-contained and is skipped by the build.
+`_add_markers.py` was a one-time setup step — you won't need it again.
+
 ## Deploy to GitHub Pages
 
 ```bash
